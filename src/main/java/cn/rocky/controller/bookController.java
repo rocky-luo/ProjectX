@@ -22,6 +22,11 @@ public class bookController {
     public String indexPage() {
         return "index";
     }
+    /*@RequestMapping("/")
+    public ModelAndView indexPage() {
+        ModelAndView mv = new ModelAndView("index");
+        return mv;
+    }*/
     @RequestMapping("/add")
     public String add(book book){
         System.out.println("bookname:"+book.getName());
