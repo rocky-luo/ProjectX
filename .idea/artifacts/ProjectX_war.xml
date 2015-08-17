@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ProjectX:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="rocky-springmvc-book.war">
+      <element id="artifact" artifact-name="ProjectX:war exploded" />
+    </root>
+  </artifact>
+</component>
