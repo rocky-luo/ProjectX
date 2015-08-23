@@ -45,6 +45,6 @@
             <value>.ftl</value>
         </property>
         <property name="contentType" value="text/html;charset=UTF-8"></property>
-    </bean> 
+    </bean>
 
 </beans>

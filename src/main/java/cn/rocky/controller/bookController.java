@@ -1,6 +1,8 @@
 package cn.rocky.controller;
 
 import cn.rocky.model.book;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ public class bookController {
     private bookService bookService;
     @RequestMapping("/")
     public String indexPage() {
+        Logger logger = Logger.getLogger(bookController.class);
+        logger.error(System.getProperty("ProjectRoot"));
         return "index";
     }
     /*@RequestMapping("/")
