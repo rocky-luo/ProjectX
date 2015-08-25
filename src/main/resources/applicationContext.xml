@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/aop
-            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-            http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context-3.0.xsd
             http://www.springframework.org/schema/mvc
-            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-            http://www.springframework.org/schema/tx
-            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <mvc:annotation-driven />
-    <context:component-scan base-package="cn.rocky.*" />
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="cn.rocky" />
 
     <!--   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
            <property name="prefix" value="/" />
@@ -26,7 +21,7 @@
     <!-- Freemarker配置 -->
     <bean id="freemarkerConfig"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="/WEB-INF/view/" />
+        <property name="templateLoaderPath" value="/WEB-INF/view/"/>
         <property name="freemarkerSettings">
             <props>
                 <prop key="template_update_delay">0</prop>
@@ -53,7 +48,7 @@
             <value>org.gjt.mm.mysql.Driver</value>
         </property>
         <property name="url">
-            <value>jdbc:mysql://localhost:3306/ProjectX?useUnicode=true&amp;characterEncoding=UTF-8</value>
+            <value>jdbc:mysql://127.0.0.1:3306/ProjectX?useUnicode=true&amp;characterEncoding=UTF-8</value>
             <!--ProjectX是我的数据库  -->
         </property>
         <property name="username">
@@ -63,9 +58,28 @@
             <value>123</value>
         </property>
     </bean>
+    <!-- mybatis配置 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="jdbcDataSource" />
-        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="jdbcDataSource"/>
+        <!-- 映射文件集合 -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+        <property name="basePackage" value="cn.rocky.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 事务配置 -->
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="jdbcDataSource"/>
+    </bean>-->
+
+    <!--使用注解方式的事务-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <!--启用aop注解支持-->
+    <aop:aspectj-autoproxy/>
 
 </beans>

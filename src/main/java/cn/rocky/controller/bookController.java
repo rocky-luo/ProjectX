@@ -2,11 +2,13 @@ package cn.rocky.controller;
 
 import cn.rocky.dao.mybookDAO;
 import cn.rocky.model.book;
+import cn.rocky.service.Impl.MybookServiceImpl;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import cn.rocky.service.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,12 +24,13 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/")
 public class bookController {
     @Autowired
-    private mybookDAO mybook;
+    private IMybookService mybookService;
+    @Autowired
     private bookService bookService;
     @RequestMapping("/")
     public String indexPage() {
         Logger logger = Logger.getLogger(bookController.class);
-        //mybook.insert(1,"rocky run");
+        mybookService.insert(1,"rocky run");
 
         logger.error(System.getProperty("ProjectRoot"));
         return "index";
