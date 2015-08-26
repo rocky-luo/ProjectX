@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 public class MybookServiceImpl implements IMybookService {
     @Resource
     private IMybookDAO mybookDAO;
+    @Override
     public int insert(int book_id, String book_name){
         return mybookDAO.insert(book_id,book_name);
     }

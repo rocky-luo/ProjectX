@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/")
 public class bookController {
-    @Autowired
+    @Resource
     private IMybookService mybookService;
     @Autowired
     private bookService bookService;
