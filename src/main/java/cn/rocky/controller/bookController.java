@@ -1,6 +1,6 @@
 package cn.rocky.controller;
 
-import cn.rocky.dao.mybookDAO;
+import cn.rocky.dao.IMybookDAO;
 import cn.rocky.model.book;
 import cn.rocky.service.Impl.MybookServiceImpl;
 import org.apache.log4j.Logger;
