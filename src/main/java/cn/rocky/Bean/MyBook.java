@@ -3,7 +3,7 @@ package cn.rocky.Bean;
 /**
  * Created by luoqi02 on 15/8/24.
  */
-public class bookBean {
+public class MyBook {
     private int book_id;
     private String book_name;
 
@@ -21,5 +21,13 @@ public class bookBean {
 
     public void setBook_name(String book_name) {
         this.book_name = book_name;
+    }
+
+    @Override
+    public String toString() {
+        return "MyBook{" +
+                "book_id=" + book_id +
+                ", book_name='" + book_name + '\'' +
+                '}';
     }
 }

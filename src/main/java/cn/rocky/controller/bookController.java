@@ -30,7 +30,7 @@ public class bookController {
     @RequestMapping("/")
     public String indexPage() {
         Logger logger = Logger.getLogger(bookController.class);
-        mybookService.insert(1,"rocky run");
+        mybookService.insert(2,"rocky run again");
 
         logger.error(System.getProperty("ProjectRoot"));
         return "index";

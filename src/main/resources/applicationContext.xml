@@ -97,4 +97,19 @@
     <!--启用aop注解支持-->
     <aop:aspectj-autoproxy/>
 
+
+    <bean id="book" class="cn.rocky.Bean.MyBook">
+        <property name="book_id" value="123"/>
+        <property name="book_name" value="rocky learn book"/>
+    </bean>
+
+    <bean id="location" class="cn.rocky.Bean.Location">
+        <property name="city" value="beijing"/>
+    </bean>
+    <bean id="user" class="cn.rocky.Bean.User" >
+        <property name="id" value="999"/>
+        <property name="name" value="rocky"/>
+        <lookup-method name="locationOut" bean="location"/>
+    </bean>
+
 </beans>
